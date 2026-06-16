@@ -9,7 +9,9 @@ from mongodb import MongoDB
 
 
 def run():
+    print("Starting application...")
     mongo = MongoDB()
+    print("MongoDB connected")
 
     while True:
         try:
