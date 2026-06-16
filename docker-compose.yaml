@@ -1,0 +1,8 @@
+services:
+  nse-collector:
+    build: .
+    container_name: nse-collector
+    restart: unless-stopped
+
+    environment:
+      DB_URI: ${DB_URI}
