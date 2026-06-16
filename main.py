@@ -9,16 +9,16 @@ from mongodb import MongoDB
 
 
 def run():
-    print("Starting application...")
+    print("Starting application...",flush=True)
     mongo = MongoDB()
-    print("MongoDB connected")
+    print("MongoDB connected",flush=True)
 
     while True:
         try:
             now = datetime.now(IST)
 
             if is_market_open():
-                print(f"[{now}] Fetching option chain...")
+                print(f"[{now}] Fetching option chain...",flush=True)
 
                 data = fetch_option_chain(
                     "NIFTY",
@@ -34,15 +34,14 @@ def run():
                     transformed_data
                 )
 
-                print(
-                    f"[{now}] Inserted {inserted_count} records"
-                )
+                print(f"[{now}] Inserted {inserted_count} records",flush=True)
 
             else:
-                print(f"[{now}] Market closed")
+                print(f"[{now}] Market closed",flush=True)
 
         except Exception:
             traceback.print_exc()
+            print(f"[{now}] An error occurred - {traceback.format_exc()}",flush=True)
 
         sleep_until_next_interval()
 
